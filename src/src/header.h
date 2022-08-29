@@ -4,7 +4,7 @@
 #include "definitions.h"
 #include "serial.h"
 #include "lin_reg.h"
-
+#include "timer.h"
 
 #define BUTTON 5 // PIN 13 / PORTB5.
 
@@ -15,6 +15,7 @@
 #define ADC_MAX 1023 // Maxvärde vid AD-omvandling.
 struct lin_reg l1;
 Serial serial;
+Timer timer1, timer2;
 volatile uint8_t executed_interrupts;
 
 void setup();

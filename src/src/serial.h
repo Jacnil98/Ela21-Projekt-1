@@ -4,7 +4,6 @@
 
 // Inkluderingsdirektiv:
 #include "definitions.h"
-#include <stdio.h>
 
 // Makron för strängstorlekar:
 #define SIZE 50 // Ordinarie strängstorlek.
