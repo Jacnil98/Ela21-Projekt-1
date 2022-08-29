@@ -1,4 +1,4 @@
-#include "lin_reg.h"
+#include "header.h"
 
 static void optimize(struct lin_reg* self, const double input, const double reference);
 static void shuffle(struct lin_reg* self);
@@ -18,7 +18,7 @@ void lin_reg_new(struct lin_reg* self)
    return;
 }
 
-void lin_reg_set_training_data(struct lin_reg* self, const double* x, const double* yref, const uint8_t num_sets,const size_t epoch,const double lr)
+void set_training_data(struct lin_reg* self, const double* x, const double* yref, const uint8_t num_sets,const size_t epoch,const double lr)
 {
    self->x = x;
    self->yref = yref;

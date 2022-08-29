@@ -41,7 +41,7 @@ static void init_timers()
 	TCCR0B = ((1 << CS00) | (1 << CS02));
 	TIMSK0 = (1 << TOIE0);
 	return;
-}
+} // Lägga till för 2 o 3?
 
 static void init_ADC()
 {

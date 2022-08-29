@@ -24,3 +24,10 @@ ISR (TIMER0_OVF_vect)
 	}
 	return;
 }
+
+ISR (TIMER1_COMPA_vect)
+{
+	timer1.count(&timer1);
+	if(timer1.elapsed(&timer1)) // Whats gonna happend?
+	return;
+}
