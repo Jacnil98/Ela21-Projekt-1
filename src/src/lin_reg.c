@@ -50,12 +50,13 @@ void train_legs(struct lin_reg* self)
    {
       shuffle(self);
       
-      for (size_t j = 0; i < self->num_sets; j++)
+      for (size_t j = 0; j < self->num_sets; j++)
       {
          const size_t k = self->train_order[j];
-         optimize(self,self->x[k], self->yref[k]);
+         optimize(self, self->x[k], self->yref[k]);
       }
    }
+   serial.print("Training done");
    return;
 }
 
@@ -64,7 +65,6 @@ static void optimize(struct lin_reg* self, const double input, const double refe
    const double prediction = self->weight * input + self->bias;
    const double deviation = reference - prediction;
    const double change_rate = deviation * self->lr;
-
    self->bias += change_rate;
    self->weight += change_rate * input;
    return;
@@ -72,7 +72,7 @@ static void optimize(struct lin_reg* self, const double input, const double refe
 
 static void shuffle(struct lin_reg* self)
 {
-   for (size_t i = 0; i < self->num_sets; i++)
+   for (size_t i = 0; i < self->num_sets; ++i)
    {
       const size_t random = rand() % self->num_sets;
       const size_t temp = self->train_order[i];
@@ -86,5 +86,10 @@ static void shuffle(struct lin_reg* self)
 //Predikerar värdet med hjälp av de uträknade värderna
 double predict(const struct lin_reg* self, const double input)
 {
-   return self->weight * input + self->bias;
+   //serial.print_decimal("input: %d.%d\n",input);
+   serial.print_decimal("weight: %d.%d\n", self->weight);
+   serial.print_decimal("bias: %d.%d\n",self->bias);
+   return (self->weight * input + self->bias);
 }
+
+ 

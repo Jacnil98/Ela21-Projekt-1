@@ -20,6 +20,6 @@ volatile uint8_t executed_interrupts;
 
 void setup();
 void print_temp();
-uint8_t ADC_return();
+double ADC_return();
 
 #endif /* HEADER_H_ */

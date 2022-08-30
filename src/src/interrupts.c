@@ -7,7 +7,9 @@ ISR (PCINT0_vect)
 
 	if (PINB & (1 << BUTTON)) 
 	{
-		serial.print_signed("yo",predict(&l1,ADC_return()));
+		//serial.print_decimal("\n  ADC RETURN %d", ADC_return());
+		serial.print_decimal("\n  Pred TEMP: %d.%d", predict(&l1, ADC_return()));
+		print_temp();
 	}
 	return;
 }
