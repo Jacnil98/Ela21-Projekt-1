@@ -14,6 +14,7 @@ typedef struct Serial
 	void (*println)(const char*);
 	void (*print_unsigned)(const char*, const uint32_t);
 	void (*print_signed)(const char*, const int32_t);
+	void (*print_decimal)(const char*, const double);
 } Serial;
 
 Serial new_Serial();
