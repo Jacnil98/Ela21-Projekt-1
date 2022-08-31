@@ -5,6 +5,7 @@
 #include "serial.h"
 #include "lin_reg.h"
 #include "timer.h"
+#include "Array.h"
 
 #define BUTTON 5 // PIN 13 / PORTB5.
 
