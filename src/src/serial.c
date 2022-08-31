@@ -28,7 +28,7 @@ static void Serial_print(const char* s)
 		if (s[i] == '\n') write_byte('\r');
 	}
 	
-	write_byte('\0');
+	//write_byte('\0'); /* removed since it prints NUL in terminal */
 	return;
 }
 
@@ -41,7 +41,7 @@ static void Serial_println(const char* s)
 	}
 	
 	write_byte('\n');
-	write_byte('\0');
+	//write_byte('\0'); /* removed since it prints NUL in terminal */
 	return;
 }
 
@@ -86,8 +86,8 @@ static void init_serial()
 	UCSR0B = (1 << TXEN0);
 	UCSR0C = ((1 << UCSZ00) | (1 << UCSZ01));
 	UBRR0 = 103;
-	write_byte('\r');//write_byte('\r'); //Skicka ett vagnreturstecken, så att första utskriften hanmnar längst till vänster
-	write_byte('\0');//write_byte('\0');
+	write_byte('\r');
+	//write_byte('\0');
 	return;
 }
 
