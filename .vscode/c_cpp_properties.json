@@ -1,18 +1,41 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "PlatformIO",
             "includePath": [
-                "${workspaceFolder}/**"
+                "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/include",
+                "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/src",
+                "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/.pio/libdeps/uno/Unity/src",
+                ""
             ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/include",
+                    "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/src",
+                    "c:/Users/Jacob/git_repo/yrgo/machlearn/Ela21-Projekt-1/.pio/libdeps/uno/Unity/src",
+                    ""
+                ]
+            },
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+                "F_CPU=16000000L",
+                "PLATFORMIO=60104",
+                "ARDUINO_AVR_UNO",
+                "__AVR_ATmega328P__",
+                ""
             ],
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/Jacob/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
         }
     ],
     "version": 4

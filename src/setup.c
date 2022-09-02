@@ -47,7 +47,7 @@ static void init_interrupts()
 static void init_timers()
 {
 	timer0 = new_timer(TIMER0, 300);
-	timer1 = new_timer(TIMER1, 600000);
+	timer1 = new_timer(TIMER1, 60000);
 	timer2 = new_timer(TIMER2, 60000);
 	timer2.on(&timer2);
 	arr = new_Array();

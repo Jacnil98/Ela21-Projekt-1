@@ -11,12 +11,20 @@
 typedef enum {TIMER0 = 0, TIMER1 = 1, TIMER2 = 2} TimerSelect;
 
 /**
- * @brief type definition of the struct Timer
+ * @brief Type definition of the struct Timer with four
+ * variables and function pointers. 
+ * @details All three timers avaible are set to work in
+ * similar manner. Exception TIMER1 is set in CTC-mode but 
+ * limited to 256 to function as the other timers that are
+ * set to overflow.
  * 
- * @param enabled
- * @param executed_interrupts
- * @param required_interrupts
- * @param timerselect
+ * @param enabled boolean, false when off, true when on.
+ * @param executed_interrupts number of interrupts that
+ * has occured through ISR and the use of Timer_count function.
+ * @param required_interrupts used in functions named elapsed
+ * to check if executed_interrupts >= required_interrupts.
+ * @param timerselect Enumeration of the three present timers
+ * in the Arduino Uno board.
  * 
  */
 typedef struct Timer
@@ -30,7 +38,6 @@ typedef struct Timer
 	void (*toggle)(struct Timer*);
 	void (*count)(struct Timer*);
 	void (*clear)(struct Timer*);
-	
 	bool (*elapsed)(struct Timer*);
 	bool (*elapsed_clear)(struct Timer*);
 	void (*update)(struct Timer*, uint32_t value);

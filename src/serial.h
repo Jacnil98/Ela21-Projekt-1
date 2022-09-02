@@ -1,7 +1,7 @@
 #ifndef SERIAL_H_
 #define SERIAL_H_
 
-/* Includefiles */
+/* Include directive */
 #include "definitions.h"
 
 /* Sets the maximum value of a string */
@@ -9,6 +9,10 @@
 
 /**
  * @brief type definition of the struct Serial
+ * @details no variable members present, but has
+ * function pointers. To print a number using
+ * one of the functions requires the string to contain
+ * a format specifier, like "%d".
  */
 typedef struct Serial
 {
