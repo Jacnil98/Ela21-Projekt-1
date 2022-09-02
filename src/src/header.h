@@ -3,9 +3,9 @@
 
 /* Include directives */
 #include "definitions.h"
-#include "serial.h"
+#include "Serial.h"
 #include "lin_reg.h"
-#include "timer.h"
+#include "Timer.h"
 #include "Array.h"
 
 /* Defines button pin */

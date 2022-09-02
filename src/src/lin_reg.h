@@ -15,11 +15,11 @@ typedef struct lin_reg
    const double* x;
    const double* yref;
    uint8_t train_order[NUM_SETS];
-   uint8_t num_sets;
+   const uint8_t num_sets;
    double bias;
    double weight;
-   size_t epoch;
-   double lr;
+   const size_t epoch;
+   const double lr;
 } lin_reg;
 
 /* External functions */

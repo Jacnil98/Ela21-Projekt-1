@@ -1,5 +1,7 @@
 #include "header.h"
 
+/* Static functions */
+
 static void push(Array *self, const uint32_t data);
 static void pop(Array *self);
 static void clear(Array *self);
