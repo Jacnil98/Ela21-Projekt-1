@@ -14,8 +14,6 @@ static void Timer_update(Timer *self, uint32_t value);
  * AVR interrupt service routines. All timers have the same prescaler of 16M/1024.
  * TIMER1 is in CTC-mode and is set to count to the same value as the overflow timers.
  * 
- * @example Timer timer0 = new_Timer(TIMER0, 1000) - Timer0 set to count to 1 second.
- * 
  * @param timerselect Selection between enumeration of timers, TIMER0, TIMER1, TIMER2.
  * @param delay_time time in milliseconds.
  * @return Timer instance of Timer-struct
@@ -42,8 +40,10 @@ Timer new_timer(const TimerSelect timerselect, const uint32_t delay_time)
 	self.off = Timer_off;
 	self.toggle = Timer_toggle;
 	self.count = Timer_count;
+	self.clear = Timer_clear;
 	self.update = Timer_update;
 	self.elapsed = Timer_elapsed;
+	self.elapsed_clear = Timer_elapsed_clear;
 	return self;
 }
 
@@ -151,7 +151,7 @@ static bool Timer_elapsed_clear(Timer *self)
 {
 	if (self->executed_interrupts >= self->required_interrupts)
 	{
-		self->executed_interrupts = 0x00;
+		self->clear(self);
 		return true;
 	}
 	else

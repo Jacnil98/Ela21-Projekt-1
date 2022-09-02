@@ -18,7 +18,7 @@ void setup()
 static void init_serial()
 {
 	serial = new_Serial();
-	serial.print("---------------------------------------------------------------\n");
+ 	serial.print("---------------------------------------------------------------\n");
 	serial.print("Welcome to this temperature measurment system.\n\n");
 	serial.print("The time between prints depends of the\n");
 	serial.print("average value of the last five button presses.\n");
@@ -47,7 +47,7 @@ static void init_interrupts()
 static void init_timers()
 {
 	timer0 = new_timer(TIMER0, 300);
-	timer1 = new_timer(TIMER1, 120000);
+	timer1 = new_timer(TIMER1, 600000);
 	timer2 = new_timer(TIMER2, 60000);
 	timer2.on(&timer2);
 	arr = new_Array();

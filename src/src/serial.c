@@ -2,7 +2,6 @@
 #include "math.h"
 
 static void Serial_print(const char* s);
-static void Serial_println(const char* s);
 static void Serial_print_unsigned(const char* s, const uint32_t number);
 static void Serial_print_signed(const char* s, const int32_t number);
 static void Serial_print_decimal(const char* s, const double number);
@@ -13,7 +12,6 @@ Serial new_Serial()
 {
 	Serial self;
 	self.print = Serial_print;
-	self.print = Serial_println;
 	self.print_unsigned = Serial_print_unsigned;
 	self.print_signed = Serial_print_signed;
 	self.print_decimal = Serial_print_decimal;
@@ -29,7 +27,7 @@ static void Serial_print(const char* s)
 		if (s[i] == '\n') write_byte('\r');
 	}
 	
-	/* write_byte('\0'); /* not used since it prints NUL in VS code terminal */
+	/* write_byte('\0'); not used since it prints NUL in VS code terminal */
 	return;
 }
 

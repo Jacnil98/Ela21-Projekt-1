@@ -13,6 +13,7 @@
  * @param data the information stored in the index of array.
  * @param elements Number of elements currently present in array.
  * @param next Points to the next element in array.
+ * 
  */
 typedef struct Array
 {

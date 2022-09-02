@@ -1,7 +1,7 @@
 #ifndef LIN_REG_H_
 #define LIN_REG_H_
 
-/* Includefiles: */
+/* Include directive */
 #include "definitions.h"
 
 /* Defines maximum value och sets */
@@ -15,14 +15,16 @@ typedef struct lin_reg
    const double* x;
    const double* yref;
    uint8_t train_order[NUM_SETS];
-   const uint8_t num_sets;
+   uint8_t num_sets;
    double bias;
    double weight;
-   const size_t epoch;
-   const double lr;
+   size_t epoch;
+   double lr;
+   bool training_done;
 } lin_reg;
 
 /* External functions */
+
 void lin_reg_new(lin_reg* self);
 void set_training_data(lin_reg* self, const double* x, const double* yref, const uint8_t num_sets, const size_t epoch,const double lr);
 void train_legs(lin_reg* self);

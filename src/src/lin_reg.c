@@ -10,10 +10,11 @@ void lin_reg_new(struct lin_reg* self)
    self->yref = 0;
    self->num_sets = 0;
    self->epoch = 0;
-   self->lr = 0;
-
    self->bias = get_random();
    self->weight = get_random();
+   self->lr = 0;
+   self->training_done = false;
+
    return;
 }
 
@@ -55,6 +56,7 @@ void train_legs(lin_reg* self)
          optimize(self, self->x[k], self->yref[k]);
       }
    }
+   self->training_done = true;
    serial.print("Training done\n\n");
    serial.print("Start by pressing the button\n");
    return;
