@@ -37,11 +37,13 @@ static void init_interrupts()
 
 static void init_timers()
 {
-	asm("SEI");
-	TCCR0B = ((1 << CS00) | (1 << CS02));
-	TIMSK0 = (1 << TOIE0);
+	timer0 = new_timer(TIMER0, 300);
+	timer1 = new_timer(TIMER1, 600000);
+	timer2 = new_timer(TIMER2, 60000);
+	timer2.on(&timer2);
+	arr = new_Array();
 	return;
-} // Lägga till för 2 o 3?
+} 
 
 static void init_ADC()
 {

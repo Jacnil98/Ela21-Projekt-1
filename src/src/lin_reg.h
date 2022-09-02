@@ -6,7 +6,7 @@
 
 #define NUM_SETS 20
 
-struct lin_reg
+typedef struct lin_reg
 {
    const double* x;
    const double* yref;
@@ -18,9 +18,9 @@ struct lin_reg
    double lr;
 } lin_reg;
 
-void lin_reg_new(struct lin_reg* self);
-void set_training_data(struct lin_reg* self, const double* x, const double* yref, const uint8_t num_sets, const size_t epoch,const double lr);
-void train_legs(struct lin_reg* self);
-double predict(const struct lin_reg* self, const double input);
+void lin_reg_new(lin_reg* self);
+void set_training_data(lin_reg* self, const double* x, const double* yref, const uint8_t num_sets, const size_t epoch,const double lr);
+void train_legs(lin_reg* self);
+double predict(const lin_reg* self, const double input);
 
 #endif /* LIN_REG_H_ */

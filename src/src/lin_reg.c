@@ -1,7 +1,7 @@
 #include "header.h"
 
-static void optimize(struct lin_reg* self, const double input, const double reference);
-static void shuffle(struct lin_reg* self);
+static void optimize(lin_reg* self, const double input, const double reference);
+static void shuffle(lin_reg* self);
 static inline double get_random(void) { return rand() / (double)RAND_MAX; }
 
 void lin_reg_new(struct lin_reg* self)
@@ -20,7 +20,7 @@ void lin_reg_new(struct lin_reg* self)
    return;
 }
 
-void set_training_data(struct lin_reg* self, const double* x, const double* yref, const uint8_t num_sets,const size_t epoch,const double lr)
+void set_training_data(lin_reg* self, const double* x, const double* yref, const uint8_t num_sets,const size_t epoch,const double lr)
 {
    self->x = x;
    self->yref = yref;
@@ -46,7 +46,7 @@ void set_training_data(struct lin_reg* self, const double* x, const double* yref
    return;
 }
 
-void train_legs(struct lin_reg* self)
+void train_legs(lin_reg* self)
 {
    for (size_t i = 0; i < self->epoch; i++)
    {
@@ -62,7 +62,7 @@ void train_legs(struct lin_reg* self)
    return;
 }
 
-static void optimize(struct lin_reg* self, const double input, const double reference)
+static void optimize(lin_reg* self, const double input, const double reference)
 {
    const double prediction = self->weight * input + self->bias;
    const double deviation = reference - prediction;
@@ -74,7 +74,7 @@ static void optimize(struct lin_reg* self, const double input, const double refe
    return;
 }
 
-static void shuffle(struct lin_reg* self)
+static void shuffle(lin_reg* self)
 {
    for (size_t i = 0; i < self->num_sets; ++i)
    {
@@ -88,10 +88,10 @@ static void shuffle(struct lin_reg* self)
 }
 
 //Predikerar värdet med hjälp av de uträknade värderna
-double predict(const struct lin_reg* self, const double input)
+double predict(const lin_reg* self, const double input)
 {
    serial.print_decimal("Weight: %d.%d\n", self->weight);
-   serial.print_decimal("Bias: %d.%d\n",self->bias);
+   serial.print_decimal("Bias: %d.%d",self->bias);
    return (self->weight * input + self->bias);
 }
 

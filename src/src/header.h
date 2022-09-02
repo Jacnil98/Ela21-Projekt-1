@@ -8,16 +8,16 @@
 #include "Array.h"
 
 #define BUTTON 5 // PIN 13 / PORTB5.
-
 #define TEMP_SENSOR 1 // PIN A1 / PORTC1.
 
 // Makron för beräkning av temperatur:
-#define Vcc 5.0f // Matningsspänning 5 V.
-#define ADC_MAX 1023 // Maxvärde vid AD-omvandling.
-struct lin_reg l1;
+#define Vcc 5.0f
+#define ADC_MAX 1023
+
+lin_reg l1;
 Serial serial;
-Timer timer1, timer2;
-volatile uint8_t executed_interrupts;
+Timer timer0, timer1, timer2;
+Array arr;
 
 void setup();
 void print_temp();

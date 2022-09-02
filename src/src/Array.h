@@ -3,18 +3,18 @@
 
 #include "definitions.h"
 
-#define SIZE 5
+#define ARRAY_SIZE 5
 
 typedef struct Array
 {
-    size_t data[SIZE];
+    uint32_t data[ARRAY_SIZE];
     uint8_t elements;
     uint8_t next;
-    void (*push)(struct Array*, size_t);
+    void (*push)(struct Array*, uint32_t);
     void (*pop)(struct Array*);
     void (*clear)(struct Array*);
-    void (*print)(const struct Array*);
-    size_t (*average)(const struct Array*);
+    void (*print)(struct Array*);
+    uint32_t (*average)(struct Array*);
 } Array;
 
 Array new_Array(void);

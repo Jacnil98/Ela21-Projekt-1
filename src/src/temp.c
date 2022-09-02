@@ -18,7 +18,7 @@ void print_temp()
 	const uint16_t ADC_result = ADC_read();
 	const float Uin = Vcc * ((float)ADC_result / ADC_MAX);
 	const int temperature = (int)(100 * Uin - 50);
-	serial.print_signed("\nActual temp: %d celcius\n", temperature);
+	//serial.print_signed("\nActual temp: %d celcius\n", temperature);
 	// serial.print_decimal("\nActual temp: %lf celcius\n", temperature);
 	return;
 }
@@ -27,8 +27,7 @@ double ADC_return()
 {
 	const uint16_t ADC_result = ADC_read();
 	const float Uin = Vcc * ((float)ADC_result / ADC_MAX); // 304 / 1023  = 0.29 = 1,48 V
-	serial.print_decimal("mV:  %d.%d\n", Uin);
-
+	//serial.print_decimal("mV:  %d.%d\n", Uin);
 	return Uin;
 }
 
