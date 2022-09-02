@@ -33,7 +33,7 @@ Array new_Array(void)
 /**
  * @brief push - Adds data to element in array
  * 
- * @param self array struct
+ * @param self pointer to Array instance.
  * @param data Value to add onto the next element in array.
  */
 static void push(Array *self, const uint32_t data)
@@ -49,7 +49,7 @@ static void push(Array *self, const uint32_t data)
 /**
  * @brief pop - Deletes the last element of the array
  * 
- * @param self array struct
+ * @param self pointer to Array instance.
  */
 static void pop(Array *self)
 {
@@ -68,7 +68,7 @@ static void pop(Array *self)
 /**
  * @brief clear - Clears the array
  * 
- * @param self array struct
+ * @param self pointer to Array instance.
  */
 static void clear(Array *self)
 {
@@ -81,33 +81,33 @@ static void clear(Array *self)
 /**
  * @brief print - Prints out the average value of the array
  * 
- * @param self array struct
+ * @param self pointer to Array instance.
  */
 static void print(Array *self)
 {
     if (!self->elements)
         return;
 
-    /* serial.print_unsigned("Elements present: %d\n", self->elements);
+    serial.print_unsigned("Elements present: %d\n", self->elements);
     for (register uint8_t i = 0; i < self->elements; i++)
-        serial.print_unsigned("Value: %d\n", self->data[i]); */
-    serial.print_unsigned("\nTime in s: %d\n\n", (uint16_t)((float)16.384 * average(self) / 1000) + 0.5);
+        serial.print_unsigned("Value: %d\n", self->data[i]);
+    serial.print_unsigned("\nTime in s: %d\n\n", (((16.384 * average(self))/(float)1000) + 0.5));
 }
 
 /**
  * @brief average - Calculates the average value of the array
  * 
- * @param self array struct
+ * @param self pointer to Array instance.
  * @return uint32_t - the average value of the sum divided by number of elements.
  */
 static uint32_t average(Array *self)
 {
     uint32_t sum = 0;
-    for (register uint8_t i = 0; i < self->elements; i++)
+    for (uint8_t i = 0; i < self->elements; i++)
     {
         sum += self->data[i];
     }
-    return sum / (double)self->elements;
+    return (sum/(double)self->elements)+0.5;
 }
 
 /**

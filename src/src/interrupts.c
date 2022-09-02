@@ -26,6 +26,7 @@ ISR(PCINT0_vect)
 			timer1.executed_interrupts = 0x00;
 		}
 		timer2.executed_interrupts = 0x00;
+		arr.print(&arr);
 		serial.print_decimal("\nPredicted temperature: %d.%d\n", predict(&l1, ADC_return()));
 	}
 	return;
