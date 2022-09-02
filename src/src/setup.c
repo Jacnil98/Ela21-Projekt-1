@@ -18,6 +18,15 @@ void setup()
 static void init_serial()
 {
 	serial = new_Serial();
+	serial.print("---------------------------------------------------------------\n");
+	serial.print("Welcome to this temperature measurment system.\n\n");
+	serial.print("The time between prints depends of the\n");
+	serial.print("average value of the last five button presses.\n");
+	serial.print("If ten minutes passes the without a button is pressed,\n");
+	serial.print("then the oldest value will be updated with 10 minutes and\n");
+	serial.print("the system will print less often until it's set to 10 minutes\n");
+	serial.print("\nMade by Jacob Nilsson & Jacob Lundkvist\n");
+	serial.print("---------------------------------------------------------------\n");
 	return;
 }
 
@@ -38,7 +47,7 @@ static void init_interrupts()
 static void init_timers()
 {
 	timer0 = new_timer(TIMER0, 300);
-	timer1 = new_timer(TIMER1, 600000);
+	timer1 = new_timer(TIMER1, 120000);
 	timer2 = new_timer(TIMER2, 60000);
 	timer2.on(&timer2);
 	arr = new_Array();

@@ -14,9 +14,6 @@ void lin_reg_new(struct lin_reg* self)
 
    self->bias = get_random();
    self->weight = get_random();
-   serial.print_decimal("Initial bias: %d.%d\n\n", self->bias);
-   serial.print_decimal("Initial Weight: %d.%d\n\n", self->weight);
-
    return;
 }
 
@@ -58,7 +55,8 @@ void train_legs(lin_reg* self)
          optimize(self, self->x[k], self->yref[k]);
       }
    }
-   serial.print("Training done\n");
+   serial.print("Training done\n\n");
+   serial.print("Start by pressing the button\n");
    return;
 }
 

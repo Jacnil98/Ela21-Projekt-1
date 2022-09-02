@@ -1,12 +1,18 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
+/* Includefiles: */
 #include "definitions.h"
 
-#define INTERRUPT_TIME 16.384f // 16.384 ms mellan varje timergenererat avbrott.
+/* Time between interrupts */
+#define INTERRUPT_TIME 16.384f
 
+/* Typedef to select timer */
 typedef enum {TIMER0 = 0, TIMER1 = 1, TIMER2 = 2} TimerSelect;
 
+/**
+ * @brief type definition of the struct Timer
+ */
 typedef struct Timer
 {
 	bool enabled;
@@ -21,5 +27,6 @@ typedef struct Timer
 	bool (*elapsed)(struct Timer*);
 } Timer;
 
+/* External functions */
 Timer new_timer(const TimerSelect timerselect, const uint32_t delay_time);
 #endif /* TIMER_H_ */

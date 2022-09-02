@@ -1,11 +1,15 @@
 #include "header.h"
 
-/*
-	Timer0 = Debounce
-	Timer1 = counter for Timer2
-	Timer2 = Adaptive timer for printing temp.
- */
 
+
+/**
+ * @brief Interrupt protocol for PCINT0, specifically for PINB, BUTTON.
+ * Enables the counting timer, timer1, on initial button interrupt.
+ * Following interrupts pushes the current value from timer1 to array
+ * to adjust the adaptive time on timer2.
+ * 
+ * @short Debounce function present.
+ */
 ISR(PCINT0_vect)
 {
 	PCICR = 0x00;
@@ -24,11 +28,11 @@ ISR(PCINT0_vect)
 			timer1.executed_interrupts = 0x00;
 		}
 		timer2.executed_interrupts = 0x00;
-		serial.print_decimal("\nPred TEMP: %d.%d\n", predict(&l1, ADC_return()));
-		//print_temp();
+		serial.print_decimal("\nPredicted temperature: %d.%d\n", predict(&l1, ADC_return()));
 	}
 	return;
 }
+
 /*
  * Debounce timer
  */
@@ -38,10 +42,9 @@ ISR(TIMER0_OVF_vect)
 
 	if (timer0.elapsed(&timer0))
 	{
-		//serial.print("\nTimer 0 activated\n");
 		PCICR = (1 << PCIE0);
-		timer0.off(&timer0);			   // Timer_reset
-		timer0.executed_interrupts = 0x00; //   ^^
+		timer0.off(&timer0);
+		timer0.executed_interrupts = 0x00;
 	}
 	return;
 }
@@ -49,7 +52,7 @@ ISR(TIMER0_OVF_vect)
 ISR(TIMER1_COMPA_vect)
 {
 	timer1.count(&timer1);
-	if (timer1.elapsed(&timer1)) // Whats gonna happend?
+	if (timer1.elapsed(&timer1))
 	{
 		arr.push(&arr, timer1.executed_interrupts);
 		timer1.executed_interrupts = 0x00;
@@ -65,7 +68,7 @@ ISR(TIMER2_OVF_vect)
 	{
 		arr.print(&arr);
 		serial.print("--\n");
-		serial.print_decimal("\nPred TEMP: %d.%d", predict(&l1, ADC_return()));
+		serial.print_decimal("\nPredicted Temperature: %d.%d\n", predict(&l1, ADC_return()));
 		serial.print("\n--\n");
 	}
 }

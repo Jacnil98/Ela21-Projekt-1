@@ -1,13 +1,15 @@
-
 #ifndef SERIAL_H_
 #define SERIAL_H_
 
-// Inkluderingsdirektiv:
+/* Includefiles */
 #include "definitions.h"
 
-// Makron för strängstorlekar:
-#define SIZE 50 // Ordinarie strängstorlek.
+/* Sets the maximum value of a string */
+#define SIZE 50
 
+/**
+ * @brief type definition of the struct Serial
+ */
 typedef struct Serial
 {
 	void (*print)(const char*);
@@ -17,6 +19,7 @@ typedef struct Serial
 	void (*print_decimal)(const char*, const double);
 } Serial;
 
+/* External functions */
 Serial new_Serial();
 
 #endif /* SERIAL_H_ */
