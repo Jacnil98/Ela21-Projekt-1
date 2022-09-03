@@ -16,4 +16,4 @@ Konstruktionen fick samtliga efterfrågade funktioner. Denna konstruktion funger
 
 ****
 #### Diskussion
-Uppgiften var en lagom svårighetsgrad. Det mesta problemen var inte konstruktionen utan kompilatorn. Då ursprunliga målet var att skriva koden i C++ men kompilatorn ville ej kompilera den koden. Men när kompilatorn väl ville sammarbeta så flöt allting på bra och vi stötte direkt inte på några hinder. 
+Uppgiften var en lagom svårighetsgrad. Det mesta problemen var inte konstruktionen utan kompilatorn. Då ursprunliga målet var att skriva koden i C++ för att förbättra vår kunskap inom det området och de bibliotek som tillkommer det språket. I detta fall så kunde vi inte få tillgång till bibliotek som iostream och array samtidigt som vi behövde åtkomst åt de bibliotek som fanns tillgängliga för AVR. När kompilatorn väl ville sammarbeta så gick allting bra och vi stötte inte direkt på några hinder bortsett från en liten miss i vår träningsdata där vi hade deklarerat ett decimaltal med kommatecken istället för punkt. 
