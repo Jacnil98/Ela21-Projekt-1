@@ -14,6 +14,9 @@ Programmet startas med att träna sig själv med hjälp av den data som den ange
 ### Resultat
 Konstruktionen fick samtliga efterfrågade funktioner. Denna konstruktion fungerade som förväntat utan några fel eller buggar. 
 
+![alt text](https://github.com/Jacnil98/Ela21-Projekt-1/blob/main/img/SerialMonitor.png)
+![alt text](https://github.com/Jacnil98/Ela21-Projekt-1/blob/main/img/SerialMonitor2.png)
+
 ****
 #### Diskussion
 Uppgiften var en lagom svårighetsgrad. Det mesta problemen var inte konstruktionen utan kompilatorn. Då ursprunliga målet var att skriva koden i C++ för att förbättra vår kunskap inom det området och de bibliotek som tillkommer det språket. I detta fall så kunde vi inte få tillgång till bibliotek som iostream och array samtidigt som vi behövde åtkomst åt de bibliotek som fanns tillgängliga för AVR. När kompilatorn väl ville sammarbeta så gick allting bra och vi stötte inte direkt på några hinder bortsett från en liten miss i vår träningsdata där vi hade deklarerat ett decimaltal med kommatecken istället för punkt. 
