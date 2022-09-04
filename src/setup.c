@@ -4,12 +4,19 @@ static void init_ports();
 static void init_interrupts();
 static void init_timers();
 static void init_ADC();
+static void init_arrays();
 
+/**
+ * @brief Initial setup of functions and objects
+ * through a seris of init_functions
+ * 
+ */
 void setup()
 {
     init_serial(); 
     init_ports();
 	init_interrupts();
+	init_arrays();
 	init_timers();
 	init_ADC();
     return;
@@ -50,7 +57,6 @@ static void init_timers()
 	timer1 = new_timer(TIMER1, 60000);
 	timer2 = new_timer(TIMER2, 60000);
 	timer2.on(&timer2);
-	arr = new_Array();
 	return;
 } 
 
@@ -61,4 +67,9 @@ static void init_ADC()
 	while ((ADCSRA & (1 << ADIF)) == 0) ;;
 	ADCSRA = (1 << ADIF);
 	return;
+}
+
+static void init_arrays()
+{
+	arr = new_Array();
 }

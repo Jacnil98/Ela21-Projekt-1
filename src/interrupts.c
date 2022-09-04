@@ -18,22 +18,25 @@ ISR(PCINT0_vect)
 		if (!timer1.enabled)
 		{
 			timer1.on(&timer1);
+			serial.print("Timer now initated, tracking time between button presses\n\n");
 		}
 		else
 		{
 			arr.push(&arr, timer1.executed_interrupts);
 			timer2.update(&timer2, arr.average(&arr));
-			timer1.executed_interrupts = 0x00;
+			timer1.clear(&timer1);
 		}
 		timer2.executed_interrupts = 0x00;
-		arr.print(&arr);
-		serial.print_decimal("\nPredicted temperature: %d.%d\n", predict(&l1, ADC_return()));
+		serial.print("-----------------------------\n");
+		serial.print_decimal("Predicted temperature: %d.%d%d\n", predict(&l1, ADC_return()));
+		serial.print("-----------------------------\n\n\n");
 	}
 	return;
 }
 
-/*
- * Debounce timer
+/**
+ * @brief Debounce timer for when pin change interrupt 0 occurs.
+ * Typically on for about 300 ms then enables PCICR.
  */
 ISR(TIMER0_OVF_vect)
 {
@@ -50,7 +53,9 @@ ISR(TIMER0_OVF_vect)
 
 
 /**
- * @brief Construct a new ISR object
+ * @brief Counts to set time after timer is started. 
+ * @details When timer1 has elapsed, pushes value to 
+ * array and updates timer2 followed by clearing itself.
  * 
  */
 ISR(TIMER1_COMPA_vect)
@@ -76,9 +81,8 @@ ISR(TIMER2_OVF_vect)
 	timer2.count(&timer2);
 	if (timer2.elapsed_clear(&timer2)  && l1.training_done)
 	{
-		arr.print(&arr);
-		serial.print("--\n");
-		serial.print_decimal("\nPredicted Temperature: %d.%d\n", predict(&l1, ADC_return()));
-		serial.print("\n--\n");
+		serial.print("-----------------------------\n");
+		serial.print_decimal("Predicted Temperature: %d.%d%d\n", predict(&l1, ADC_return()));
+		serial.print("-----------------------------\n\n\n");
 	}
 }

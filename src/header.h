@@ -32,9 +32,15 @@ Serial serial;
  */
 Timer timer0, timer1, timer2;
 
+/**
+ * @brief Struct object of Array
+ * @param arr Stores values that is used for
+ * adjusting timer2 required interrupts.
+ */
 Array arr;
 
 /* External functions */
+
 void setup();
 void print_temp();
 double ADC_return();

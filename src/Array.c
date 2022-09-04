@@ -14,7 +14,7 @@ static inline void init_array(uint32_t *data, const uint8_t size);
  * @brief new_Array - creates object of struct Array and initiates 
  * values and function pointers.
  * 
- * @return Array 
+ * @return initiated instance of struct uint32_t Array
  */
 Array new_Array(void)
 {

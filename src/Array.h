@@ -10,9 +10,9 @@
 /**
  * @brief type definition of the struct Array
  * 
- * @param data the information stored in the index of array.
+ * @param data The information stored in the index of array.
  * @param elements Number of elements currently present in array.
- * @param next Points to the next element in array.
+ * @param next Points to the upcoming element in array.
  * 
  */
 typedef struct Array
@@ -28,6 +28,7 @@ typedef struct Array
 } Array;
 
 /* External functions */
+
 Array new_Array(void);
 
 #endif /* ARRAY_H_ */

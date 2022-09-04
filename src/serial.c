@@ -1,13 +1,22 @@
-#include "Serial.h"
-#include "math.h"
+/* Include directives */
 
-static void Serial_print(const char* s);
-static void Serial_print_unsigned(const char* s, const uint32_t number);
-static void Serial_print_signed(const char* s, const int32_t number);
-static void Serial_print_decimal(const char* s, const double number);
+#include "Serial.h"
+
+/* Static functions */
+
+static void Serial_print(const char *s);
+static void Serial_print_unsigned(const char *s, const uint32_t number);
+static void Serial_print_signed(const char *s, const int32_t number);
+static void Serial_print_decimal(const char *s, const double number);
 static void init_serial();
 static void write_byte(const char data);
 
+/**
+ * @brief sets function pointers to point at local functions and
+ * initiates serial transmission for the arduino uno.
+ * 
+ * @return initiated instance of struct Serial 
+ */
 Serial new_Serial()
 {
 	Serial self;
@@ -19,14 +28,20 @@ Serial new_Serial()
 	return self;
 }
 
-static void Serial_print(const char* s)
+/**
+ * @brief prints out a string through serial communication
+ * 
+ * @param s String of text to print out.
+ */
+static void Serial_print(const char *s)
 {
 	for (uint16_t i = 0; s[i] != '\0'; i++)
 	{
 		write_byte(s[i]);
-		if (s[i] == '\n') write_byte('\r');
+		if (s[i] == '\n')
+			write_byte('\r');
 	}
-	
+
 	/* write_byte('\0'); not used since it prints NUL in VS code terminal */
 	return;
 }
@@ -34,11 +49,11 @@ static void Serial_print(const char* s)
 /**
  * @brief prints a unsigned integer by combining a string and number by
  * using sprintf and then sending that string function Serial_print
- * 
+ *
  * @param s String of text that has a format specifier %d
  * @param number a unsigned integer.
  */
-static void Serial_print_unsigned(const char* s, const uint32_t number)
+static void Serial_print_unsigned(const char *s, const uint32_t number)
 {
 	char text[SIZE];
 	text[0] = '\0';
@@ -50,11 +65,11 @@ static void Serial_print_unsigned(const char* s, const uint32_t number)
 /**
  * @brief prints a signed integer by combining a string and number by
  * using sprintf and then sending that string function Serial_print
- * 
+ *
  * @param s String of text that has a format specifier %d
  * @param number a signed integer.
  */
-static void Serial_print_signed(const char* s, const int32_t number)
+static void Serial_print_signed(const char *s, const int32_t number)
 {
 	char text[SIZE];
 	text[0] = '\0';
@@ -67,20 +82,19 @@ static void Serial_print_signed(const char* s, const int32_t number)
  * @brief print_decimal uses sprintf to combine a decimal number which
  * is split up by using modulo operator and then put together by passing
  * a string with the format "%d.%d%d"
- * @example Serial_print_decimal("Decimal number: %d.%d%d", 3.52) 
+ * @example Serial_print_decimal("Decimal number: %d.%d%d", 3.52)
  * prints out: Decimal number: 3.52
- * 
+ *
  * @param s String of text, to get two decimals use "%d.%d%d"
- * @param number 
+ * @param number double, a 2 point decimal number to be printed.
  */
-static void Serial_print_decimal(const char* s, const double number)
+static void Serial_print_decimal(const char *s, const double number)
 {
-	const int integer = (int)number; // 3.52 blir 3, -3.52 blir -3.
-    int first_decimal = (int)(number * 10) % 10; // (3.52 - 3) * 100 = 52.
+	const int integer = (int)number;			 // 3.52 blir 3, -3.52 blir -3.
+	int first_decimal = (int)(number * 10) % 10; // (3.52 - 3) * 100 = 52.
 	int second_decimal = (int)(number * 100) % 10;
 	char text[SIZE];
 	text[0] = '\0';
-	// Problem: Om (-3.52 - (-3)) * 100 = -52, då blir utskrift -3.-52
 
 	if (first_decimal < 0)
 	{
@@ -96,19 +110,30 @@ static void Serial_print_decimal(const char* s, const double number)
 	return;
 }
 
+/**
+ * @brief initiates serial transmission.
+ * sets the size of the transmission and the
+ * baudrate to 9600.
+ */
 static void init_serial()
 {
 	UCSR0B = (1 << TXEN0);
 	UCSR0C = ((1 << UCSZ00) | (1 << UCSZ01));
 	UBRR0 = 103;
 	write_byte('\r');
-	//write_byte('\0');
 	return;
 }
 
+/**
+ * @brief sends one byte of data through
+ * serial transmission, one byte at a time.
+ * 
+ * @param data byte to be transmitted.
+ */
 static void write_byte(const char data)
 {
-	while ((UCSR0A & (1 << UDRE0)) == 0) ;
+	while ((UCSR0A & (1 << UDRE0)) == 0)
+		;
 	UDR0 = data;
 	return;
 }
