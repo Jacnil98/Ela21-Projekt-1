@@ -17,7 +17,7 @@ Programmet startas med att träna sig själv med hjälp av den data som den ange
 
 ### Resultat
 Konstruktionen fick samtliga efterfrågade funktioner. Denna konstruktion fungerade som förväntat utan några fel eller buggar.
-En extra funktion som tillkom var att systemet efter träning och första knapptryck kan sakta ställer om sin justerbara timer till att skriva ut var tionde minut. Så länge systemet inte upptäcker något knapptryck under 10 minuter så läggs denna tiden till i beräkningen på snittet av de senasste fem knapptryckningarna.
+En extra funktion som tillkom var att systemet efter träning och första knapptryck kan sakta ställer om sin justerbara timer till att skriva ut var tionde minut. Så länge systemet inte upptäcker något knapptryck under 10 minuter så läggs denna tiden till i beräkningen på snittet av de senaste fem knapptryckningarna.
 
 ![alt text](https://github.com/Jacnil98/Ela21-Projekt-1/blob/main/img/SerialMonitor.png)
 ![alt text](https://github.com/Jacnil98/Ela21-Projekt-1/blob/main/img/SerialMonitor2.png)
